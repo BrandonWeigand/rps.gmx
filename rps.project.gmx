@@ -33,6 +33,7 @@
     <sprite>sprites\spr_atk_summon</sprite>
     <sprite>sprites\spr_atk_good</sprite>
     <sprite>sprites\spr_atk_bad</sprite>
+    <sprite>sprites\sprite18</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_menu</background>
