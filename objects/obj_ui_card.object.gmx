@@ -65,15 +65,29 @@ image_index = card_id;
 card_name = element_type(card_id);
 sprite_index = asset_get_index('spr_card_'+card_name);
 
-
-image_angle =  sign ((x - (room_width*0.5))) * -30;
+var mx_angle = sign ((x - (room_width*0.5))) * -30;
+if(sign(mx_angle - image_angle)!=0){
+    image_angle += sign(mx_angle - image_angle);
+    image_xscale=1;
+    image_yscale=1;
+}
 if(mouse_over || id = global.card_current){
             
         if(point_distance(x,y,mouse_x,mouse_y) &lt;= point_distance(global.card_current_x,global.card_current_y,mouse_x,mouse_y)){
-            if(mouse_over &amp;&amp; id = global.card_current){
-                image_angle = 0;
-            }  
             
+            
+                if(mouse_over &amp;&amp; id = global.card_current){
+                if(image_angle&lt;-5 || image_angle&gt;5){
+                    image_angle -= sign(image_angle)*5;
+                    image_xscale=1;
+                    image_yscale=1;
+                }else{
+                image_angle=0;
+                image_xscale=1.25;
+                image_yscale=1.25;
+                }
+                }  
+
             if(mouse_check_button(mb_any) &amp;&amp; mouse_over){
                 y = mouse_y;
                 x = mouse_x;
@@ -134,13 +148,26 @@ switch(win){
         eft = instance_create(mouse_x,mouse_y,obj_effect);
         audio_play_sound(asset_get_index('snd_'+card_name), 10, false);
         eft.card_name = card_name;
+        
+        eft = instance_create(mouse_x,mouse_y,obj_effect);
+        eft.card_name = 'good';
+        eft.depth = eft.depth + 100;
     } break;
     case false:{// loose
         health += 1;
         audio_play_sound(snd_fail, 10, false);
+        
+        
+        eft = instance_create(mouse_x,mouse_y,obj_effect);
+        eft.depth = eft.depth + 100;
+        eft.card_name = 'bad';
     } break;
     default:{// tie
         audio_play_sound(snd_tie, 10, false);
+        
+        eft = instance_create(mouse_x,mouse_y,obj_effect);
+        eft.depth = eft.depth + 100;
+        eft.card_name = 'bad';
     } break;
 }
 

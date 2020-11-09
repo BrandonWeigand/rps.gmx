@@ -31,8 +31,12 @@
     <sprite>sprites\spr_atk_wind</sprite>
     <sprite>sprites\spr_atk_water</sprite>
     <sprite>sprites\spr_atk_summon</sprite>
+    <sprite>sprites\spr_atk_good</sprite>
+    <sprite>sprites\spr_atk_bad</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_menu</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\element_decide.gml</script>
